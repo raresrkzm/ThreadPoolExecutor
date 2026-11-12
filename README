@@ -1,0 +1,37 @@
+## Carausu Nelu-Rares-Ionut
+## 323CB
+
+
+## Tema 2 SD
+
+
+## Punctaj obtinut pe checker-ul local: 95 / 135
+
+La aceasta tema, citesc primele 2 linii din fisier separat, apoi citesc linie
+cu linie pentru executarea operatiilor corespunzatoare. 
+Task-urile noi create sunt adauagate in coada waiting. In momentul in care este 
+data comanda run, fiecarui task din aceasta coada ii este atribuit un thread din
+stiva de thread-uri, atata timp cat exista thread-uri in stiva. Task-urile carora
+le-a fost atribuit un thread vor fi scoase din coada waiting si trecute in coada 
+running. De acolo, task-urile care si-au terminat executia sunt scoase din coada 
+running si trecute in coada finished, iar id-ul acestor task-uri devine disponibil
+pentru a fi folosit la crearea altor task-uri. Thread-ul task-ului care si-a
+terminat executia este trecut inapoi in stiva de thread-uri.
+In cozile waiting, running si finished, task-urile sunt sortate dupa cum este 
+mentionat in enunt.
+
+Functia findElem:
+De ex fie coada: 1->2->3->4 pe care vreau sa o ordonez descresctor
+- caut elementul care trebuie pus primul, 4 si il salvez in elem = 4
+- apelez functia reorder care afla ca 4 se afla la pozitia 4 in coada 
+(numerotarea pozitiilor incepe de la 1)
+- fac 3 (4 - 1) operatii: il scot pe 1, il adaug la apoi final, apoi repet 
+operatia de inca 2 ori, iar coada devine: 4->1->2->3
+- apoi repet operatiile din findElem de un numar egal cu lungimea cozii, cu
+conditia ca incepand cu a doua repetitie sa salvez elementele deja sorate
+(ex: 4) si sa caut doar in restul cozii (ex: 1->2->3)
+- la final voi avea intr-o coada elementele deja sotrate (ex: 4) si in cea
+initiala restul de elemente (ex: 3->1->2), iar le adaug pe cele sortate in coada
+initiala (ex: 3->1->2->4)
+- fac niste mutari (eliminare de la inceput si inserare la final) pentru a avea
+elementele deja sortate la inceputul cozii (ex: 4->3->1->2)
